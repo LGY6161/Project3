@@ -11,11 +11,6 @@ var pool = mysql.createPool({
   database:'mydb'
 });
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
 /* 기본 로그인 페이지 */
 router.get('/login', function(req,res, next){
   res.render('login', { title: 'Login'});
@@ -35,7 +30,7 @@ router.post('/login', function(req, res, next){
           expires: new Date(Date.now() + 900000),
           httpOnly: true
         });
-        res.redirect('/student_main');
+        res.redirect('/login_success');
       }
       else {
         var sqlForSelectStudent = "SELECT * FROM mydb.professor WHERE p_no=? AND p_psw=?";
@@ -46,7 +41,7 @@ router.post('/login', function(req, res, next){
               expires: new Date(Date.now() + 900000),
               httpOnly: true
             });
-            res.redirect('./professor_main');
+            res.redirect('./login_success');
           }
           else {
             res.send("<script language=\"javascript\">alert('The ID does not exist or the password is incorrect!')</script>" + 
@@ -97,5 +92,5 @@ router.post('/signup', function(req, res, next){
 /* 강의 공지사항 */
 
 
-
+/* 기본 로그인 페이지 */
 module.exports = router;
