@@ -7,7 +7,7 @@ var pool = mysql.createPool({
   connectionLimit: 5,
   host:'localhost',
   user:'root',
-  password: 'qlalfqjsgh1234',
+  password: '123123',
   database:'mydb'
 });
 
@@ -22,7 +22,7 @@ router.post('/login', function(req, res, next){
   var datas = [id, password];
 
   pool.getConnection(function(err, connection){
-    var sqlForSelectStudent = "SELECT * FROM mydb.student WHERE s_no=? AND s_pwd=?";
+    var sqlForSelectStudent = "SELECT * FROM mydb.student_tbl WHERE stu_no=? AND s_pwd=?";
     connection.query(sqlForSelectStudent, datas, function(err, rows){
       if(err) console.error("err : "+err);
       if(rows.length > 0){
@@ -33,7 +33,7 @@ router.post('/login', function(req, res, next){
         res.redirect('/login_success');
       }
       else {
-        var sqlForSelectStudent = "SELECT * FROM mydb.professor WHERE p_no=? AND p_psw=?";
+        var sqlForSelectStudent = "SELECT * FROM mydb.professor_tbl WHERE pro_no=? AND p_psw=?";
         connection.query(sqlForSelectStudent, datas, function(err, rows){
           if(err) console.error("err : "+err);
           if(rows.length > 0){
@@ -74,9 +74,9 @@ router.post('/signup', function(req, res, next){
   pool.getConnection(function(err, connection){
     var sqlForInsert;
     if(role === 'student') {
-      sqlForInsert = "INSERT INTO mydb.student (s_no, s_name, s_pwd) VALUES (?, ?, ?)";
+      sqlForInsert = "INSERT INTO mydb.student_tbl (stu_no, stu_name, stu_pwd) VALUES (?, ?, ?)";
     } else if(role === 'professor') {
-      sqlForInsert = "INSERT INTO mydb.professor (p_no, p_name, p_psw) VALUES (?, ?, ?)";
+      sqlForInsert = "INSERT INTO mydb.professor_tbl (pro_no, pro_name, pro_psw) VALUES (?, ?, ?)";
     } else {
       res.send('Invalid role');
       return;
