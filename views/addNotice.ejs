@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Notice</title>
+</head>
+<body>
+  <h1>Add Notice</h1>
+  <form action="/noticeboard/addNotice" method="post">
+    <label for="sub_code">Subject:</label>
+    <select name="sub_code" id="sub_code">
+      <% subjects.forEach(function(subject) { %>
+        <option value="<%= subject.sub_code %>"><%= subject.sub_name %></option>
+      <% }); %>
+    </select>
+    <br>
+
+    <label for="bod_title">Title:</label>
+    <input type="text" id="bod_title" name="bod_title">
+    <br>
+
+    <label for="bod_content">Content:</label>
+    <textarea id="bod_content" name="bod_content"></textarea>
+    <br>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
