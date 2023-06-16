@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notice Board</title>
+</head>
+<body>
+    <h1>Notice Board</h1>
+
+    <% if(typeof subjects !== 'undefined' && subjects.length > 0) { %>
+        <table>
+            <tr>
+                <td>번호</td>
+                <td>제목</td>
+            </tr>
+<%
+            for (var i = 0; i < subjects.length; i++){
+                var list = subjects[i];
+%>
+                <tr>
+                    <td><%=list.bod_no%></td>
+                    <td><a href="/noticeboard/<%= list.bod_no %>"><%=list.bod_title%></a></td>
+                </tr>
+<%
+            }
+%>
+        </table>
+    <% } else { %>
+        <p>No notices</p>
+    <% } %>
+
+
+    
+    <% if(isProfessor) { %>
+        <h2>Add new notice</h2>
+        <a href="/noticeboard/addNotice">
+            <button>Add Notice</button>
+        </a>
+    <% } %>
+
+
+</body>
+</html>
