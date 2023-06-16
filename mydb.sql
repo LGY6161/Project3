@@ -44,15 +44,13 @@ DEFAULT CHARACTER SET = utf8mb3;
 CREATE TABLE IF NOT EXISTS `mydb`.`subject_tbl` (
   `sub_code` VARCHAR(5) NOT NULL COMMENT '과목코드',
   `sub_name` VARCHAR(45) NOT NULL COMMENT '과목명',
-  `pro_no` INT NULL COMMENT '교수번호',
+  `pro_no` INT NULL DEFAULT NULL COMMENT '교수번호',
   PRIMARY KEY (`sub_code`),
   UNIQUE INDEX `sub_code_UNIQUE` (`sub_code` ASC) VISIBLE,
   INDEX `fk_subject_tbl_pro_no_idx` (`pro_no` ASC) VISIBLE,
   CONSTRAINT `fk_subject_tbl_pro_no`
     FOREIGN KEY (`pro_no`)
-    REFERENCES `mydb`.`professor_tbl` (`pro_no`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `mydb`.`professor_tbl` (`pro_no`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -84,28 +82,6 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`board_tbl`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`board_tbl` (
-  `bod_no` INT NOT NULL AUTO_INCREMENT COMMENT '게시글 번호',
-  `sub_code` VARCHAR(5) NOT NULL COMMENT '교과목 번호',
-  `pro_no` INT NOT NULL COMMENT '교수번호(작성자)',
-  `bod_title` VARCHAR(150) NOT NULL COMMENT '게시글 제목',
-  `bod_content` TEXT NOT NULL COMMENT '게시글 본문',
-  `bod_image` VARCHAR(200) NULL DEFAULT NULL COMMENT '게시글 이미지',
-  `bod_regdate` DATETIME NULL DEFAULT NULL COMMENT '게시글 등록일자',
-  `bod_update` DATETIME NULL DEFAULT NULL COMMENT '게시글 수정일자',
-  `bod_deldate` DATETIME NULL DEFAULT NULL COMMENT '게시글 삭제일자',
-  PRIMARY KEY (`bod_no`),
-  INDEX `fd_board_crator_id_idx` (`pro_no` ASC) VISIBLE,
-  CONSTRAINT `fk_bod_pro_no`
-    FOREIGN KEY (`pro_no`)
-    REFERENCES `mydb`.`professor_tbl` (`pro_no`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
-
-
--- -----------------------------------------------------
 -- Table `mydb`.`score_tbl`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`score_tbl` (
@@ -119,6 +95,34 @@ CREATE TABLE IF NOT EXISTS `mydb`.`score_tbl` (
     REFERENCES `mydb`.`student_tbl` (`stu_no`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`notice_tbl`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`notice_tbl` (
+  `not_no` INT NOT NULL AUTO_INCREMENT,
+  `not_creator` INT NOT NULL,
+  `not_title` VARCHAR(255) NOT NULL,
+  `not_content` TEXT NOT NULL,
+  `not_regdate` DATETIME NULL,
+  `not_update` DATETIME NULL,
+  PRIMARY KEY (`not_no`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`document_tbl`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`document_tbl` (
+  `doc_no` INT NOT NULL,
+  `dot_creator` INT NOT NULL,
+  `doc_title` VARCHAR(255) NOT NULL,
+  `doc_content` TEXT NOT NULL,
+  `doc_regdate` DATETIME NULL,
+  `doc_update` DATETIME NULL,
+  PRIMARY KEY (`doc_no`))
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
