@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>시간표 게시 프로그램</title>
+  <style>
+    table {
+      width: 100%;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>시간표 게시 프로그램</h1>
+
+  <h2>시간표</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>시간</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (let i = 9; i <= 17; i++) { %>
+        <tr>
+          <td><%= i %>:00</td>
+          <% for (let j = 1; j <= 5; j++) { %>
+            <% const schedule = findSchedule(j, i); %>
+            <% if (schedule) { %>
+              <td><%= schedule.title %></td>
+            <% } else { %>
+              <td></td>
+            <% } %>
+          <% } %>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <h2>새로운 시간표 추가</h2>
+  <form action="/schedule" method="post">
+    <label for="day">요일:</label>
+    <select id="day" name="day">
+      <option value="1">월</option>
+      <option value="2">화</option>
+      <option value="3">수</option>
+      <option value="4">목</option>
+      <option value="5">금</option>
+    </select>
+    <br>
+    <label for="startTime">시작 시간:</label>
+    <select id="startTime" name="startTime">
+      <% for (let i = 9; i <= 16; i++) { %>
+        <option value="<%= i %>"><%= i %>:00</option>
+      <% } %>
+    </select>
+    <br>
+    <label for="endTime">종료 시간:</label>
+    <select id="endTime" name="endTime">
+      <% for (let i = 10; i <= 17; i++) { %>
+        <option value="<%= i %>"><%= i %>:00</option>
+      <% } %>
+    </select>
+    <br>
+    <label for="title">제목:</label>
+    <input type="text" id="title" name="title">
+    <br>
+    <button type="submit">추가</button>
+  </form>
+
+  <script>
+    function findSchedule(day, hour) {
+      return <%= JSON.stringify(findSchedule(day, hour)) %>;
+    }
+  </script>
+</body>
+</html>
+
