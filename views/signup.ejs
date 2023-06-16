@@ -2,22 +2,80 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel='stylesheet' href='/stylesheets/style.css' type="text/css" media="all" />
+      
   </head>
   <body>
-    <h1><%= title %></h1>
-    <form action="/signup" method="post">
-      <label for="id">ID:</label><br>
-      <input type="text" id="id" name="id"><br>
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name"><br>
-      <label for="password">Password:</label><br>
-      <input type="password" id="password" name="password"><br>
-      <input type="radio" id="student" name="role" value="student">
-      <label for="student">Student</label><br>
-      <input type="radio" id="professor" name="role" value="professor">
-      <label for="professor">Professor</label><br>
-      <input type="submit" value="Sign Up">
+    <form action="/signup" method="post"> 
+      <div class="grid-container">
+        <div class="item1">
+          <div>
+            <ul style="display: flex; background-color: #4bf492;">
+              <li><a href="#" style="font-weight: bold; text-align: left;">CAMPUS MANAGER</a></li>
+              <li><a href="#">Login</a></li>              
+              <li><a href="#">signup</a></li>              
+            </ul>
+
+          </div>
+
+          <div>
+            <h1 style="margin-left: 20px; margin-bottom: 0px; font-weight: bold; text-align: left;"><%= title %></h1>
+          </div>
+        </div>
+        <div class="item2">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">시간표</a></li>
+            <li><a href="#">과제</a></li>
+            <li><a href="#">강의계획서</a></li>
+            <li><a href="#">수강신청</a></li>
+            <li><a href="#">공지사항</a></li>
+            <li><a href="#">성적</a></li>
+            <li><a href="#">자료실</a></li>
+          </ul>
+
+        </div>
+        <div class="item3">
+          <h2 style="margin-left: 20px; font-weight: bold; text-align: left;">정보 입력</h2>
+          <table style=" margin-bottom: 20px; margin-left: 10px; padding:20px; box-sizing: border-box;">
+            <tr>
+              <td style="width:70px;">아이디 <span>*</span> </td>
+              <td style="text-align: left;"><input type="text" style="width: 200px; " name ="id" id="id" required></td>
+            </tr>
+    
+            <td >이름 <span>*</span> </td>
+              <td style="text-align: left;"><input type="text" style="width: 200px;" name ="name" id="name" required></td>
+            </tr>
+    
+            <tr>
+              <td >비밀번호 <span>*</span> </td>
+              <td style="text-align: left; "><input type="password" style="width: 200px;" name ="password" id="password" required></td>
+            </tr>
+    
+            <tr>
+              <td >직업</td>
+              <td style="text-align: left;">
+                <select name = "role" id = "who" style="width: 100px;">
+                  <option value="student">학생</option>
+                  <option value="professor">교수</option>
+                </select>
+              </td>
+            </tr>
+          
+          </table>
+        
+        
+
+          <p margin = "10px" text-align="center"><input class="btn reverse" type="submit" value="회원가입"></a></p>
+
+        </div>  
+        <div class="item4">Right
+
+        </div>
+      </div>
+
     </form>
   </body>
 </html>
