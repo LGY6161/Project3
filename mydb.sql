@@ -44,6 +44,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 CREATE TABLE IF NOT EXISTS `mydb`.`subject_tbl` (
   `sub_code` VARCHAR(5) NOT NULL COMMENT '과목코드',
   `sub_name` VARCHAR(45) NOT NULL COMMENT '과목명',
+
   `pro_no` INT NULL DEFAULT NULL COMMENT '교수번호',
   PRIMARY KEY (`sub_code`),
   UNIQUE INDEX `sub_code_UNIQUE` (`sub_code` ASC) VISIBLE,
@@ -55,8 +56,10 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
 
+
 -- -----------------------------------------------------
 -- Table `mydb`.`attend_tbl`
+
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`attend_tbl` (
   `stu_no` INT NOT NULL COMMENT '학번',
@@ -77,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`attend_tbl` (
   CONSTRAINT `fk_attend_sub_code`
     FOREIGN KEY (`sub_code`)
     REFERENCES `mydb`.`subject_tbl` (`sub_code`))
+
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -89,6 +93,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`score_tbl` (
   `sco_year` INT NOT NULL COMMENT '성적취득년도',
   `sco_term` INT NOT NULL COMMENT '학기',
   `sco_avg` INT NULL DEFAULT NULL COMMENT '평점평균',
+  `sco_avg` INT NULL COMMENT '평점평균',
   PRIMARY KEY (`stu_no`, `sco_year`, `sco_term`),
   CONSTRAINT `fk_score_stu_no`
     FOREIGN KEY (`stu_no`)
