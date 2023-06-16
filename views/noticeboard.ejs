@@ -1,42 +1,79 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Notice Board</title>
-</head>
-<body>
-    <h1>Notice Board</h1>
+    <head>
+        <title>Notice Board</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="item1">
+            <div>
+                <ul style="display: flex; background-color: #4bf492;">
+                <li><a href="#" style="font-weight: bold; text-align: left;">CAMPUS MANAGER</a></li>
+                <li><a href="#">Login</a></li>              
+                <li><a href="#">signup</a></li>              
+                </ul>
 
-    <% if(typeof subjects !== 'undefined' && subjects.length > 0) { %>
-        <table>
-            <tr>
-                <td>번호</td>
-                <td>제목</td>
-            </tr>
-<%
-            for (var i = 0; i < subjects.length; i++){
-                var list = subjects[i];
-%>
-                <tr>
-                    <td><%=list.bod_no%></td>
-                    <td><a href="/noticeboard/<%= list.bod_no %>"><%=list.bod_title%></a></td>
-                </tr>
-<%
-            }
-%>
-        </table>
-    <% } else { %>
-        <p>No notices</p>
-    <% } %>
+            </div>
 
+            <div>
+                <h1 style="margin-left: 20px; margin-bottom: 0px; font-weight: bold; text-align: left;">Notice Board</h1>
+            </div>
+            </div>
+            <div class="item2">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">시간표</a></li>
+                <li><a href="#">과제</a></li>
+                <li><a href="#">강의계획서</a></li>
+                <li><a href="#">수강신청</a></li>
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">성적</a></li>
+                <li><a href="#">자료실</a></li>
+            </ul>
 
-    
-    <% if(isProfessor) { %>
-        <h2>Add new notice</h2>
-        <a href="/noticeboard/addNotice">
-            <button>Add Notice</button>
-        </a>
-    <% } %>
+            </div>
+            <div class="item3">
+                <h2 style="margin-left: 20px; font-weight: bold; text-align: left;">공지사항</h2>
+                <table style=" margin-bottom: 20px; margin-left: 10px; padding:20px; box-sizing: border-box;">
+                    <% if(typeof subjects !== 'undefined' && subjects.length > 0) { %>
+                        <table>
+                            <tr>
+                                <td>번호</td>
+                                <td>제목</td>
+                            </tr>
+                <%
+                            for (var i = 0; i < subjects.length; i++){
+                                var list = subjects[i];
+                %>
+                                <tr>
+                                    <td><%=list.bod_no%></td>
+                                    <td><a href="/noticeboard/<%= list.bod_no %>"><%=list.bod_title%></a></td>
+                                </tr>
+                <%
+                            }
+                %>
+                        </table>
+                    <% } else { %>
+                        <p>No notices</p>
+                    <% } %>
+                
+                
+                    
+                    <% if(isProfessor) { %>
+                        <h2>Add new notice</h2>
+                        <a href="/noticeboard/addNotice">
+                            <button>Add Notice</button>
+                        </a>
+                    <% } %>
+                
+                </table>
 
+            </div>  
+            <div class="item4">
 
-</body>
+            </div>
+        </div>
+
+    </body>
 </html>
