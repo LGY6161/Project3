@@ -4,29 +4,6 @@
     <title>Add Notice</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <!--
-  <body>
-    <h1>Add Notice</h1>
-    <form action="/noticeboard/addNotice" method="post">
-      <label for="sub_code">Subject:</label>
-      <select name="sub_code" id="sub_code">
-        <% subjects.forEach(function(subject) { %>
-          <option value="<%= subject.sub_code %>"><%= subject.sub_name %></option>
-        <% }); %>
-      </select>
-      <br>
-
-      <label for="bod_title">Title:</label>
-      <input type="text" id="bod_title" name="bod_title">
-      <br>
-
-      <label for="bod_content">Content:</label>
-      <textarea id="bod_content" name="bod_content"></textarea>
-      <br>
-
-      <input type="submit" value="Submit">
-    </form>
-  </body> -->
 
   <body>
     <form action="/noticeboard/addNotice" method="post"> 
@@ -61,22 +38,26 @@
         <div class="item3">
           <h2 style="margin-left: 20px; font-weight: bold; text-align: left;">공지사항 입력</h2>
           <table style=" margin-bottom: 20px; margin-left: 10px; padding:20px; box-sizing: border-box;">
-          
-            <label for="sub_code">Subject:</label>
-            <select name="sub_code" id="sub_code">
-              <% subjects.forEach(function(subject) { %>
-                <option value="<%= subject.sub_code %>"><%= subject.sub_name %></option>
-              <% }); %>
-            </select>
-            <br>
 
-            <label for="bod_title">Title:</label>
-            <input type="text" id="bod_title" name="bod_title">
-            <br>
+            <tr>
+              <td style="width:70px;">과목코드 <span>*</span> </td>
+              <td style="text-align: left;">
+                <select name="sub_code" id="sub_code">
+                  <% subjects.forEach(function(subject) { %>
+                    <option value="<%= subject.sub_code %>"><%= subject.sub_name %></option>
+                  <% }); %>
+                </select>
+                <input type="text" style="width: 200px; " name ="id" id="id" required>
+              </td>
+            </tr>
+    
+            <td >제목<span>*</span> </td>
+              <td style="text-align: left;"><input type="text" style="width: 200px;" name ="bod_title" id="bod_title" required></td>
+            </tr>
 
-            <label for="bod_content">Content:</label>
-            <textarea id="bod_content" name="bod_content"></textarea>
-            <br>
+            <td >내용<span>*</span> </td>
+              <td style="text-align: left;"><input type="text" style="width: 200px;" name ="bod_content" id="bod_content" required></td>
+            </tr>
           
           </table>      
         

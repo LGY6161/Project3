@@ -35,10 +35,16 @@
 
             </div>
             <div class="item3">
-            <h2 style="margin-left: 20px; font-weight: bold; text-align: left;">로그인</h2>
+            <h2 style="margin-left: 20px; font-weight: bold; text-align: left;">공지사항</h2>
             <table style=" margin-bottom: 20px; margin-left: 10px; padding:20px; box-sizing: border-box;">
-                <h1><%= notice.bod_title %></h1>
-                <p><%= notice.bod_content %></p>
+                <tr>
+                    <td style="width:70px;"><%= notice.bod_title %><span>*</span></td>
+                </tr>
+          
+                <tr>
+                    <td><%= notice.bod_content %></p><span>*</span></td>
+                </tr>
+          
                 <a href="/noticeboard">Back to Notice Board</a>          
             </table>
 
